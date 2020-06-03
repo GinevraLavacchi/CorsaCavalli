@@ -10,9 +10,9 @@ import javax.swing.JPanel;
  * @author Lavacchi Ginevra
  */
 public class Cavallo extends JPanel {
-	int coordx;
-	int coordy;
-	Image img;
+	private int coordx;
+	private int coordy;
+	private Image img;
  	/**
 	* costruttore con parametri
 	* @param yy

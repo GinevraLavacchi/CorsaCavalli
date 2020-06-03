@@ -3,12 +3,12 @@ package escavalli;
  * @author Lavacchi Ginevra
  */
 public class CavalliInCorsa implements Runnable {
-	Cavallo Cavallo;
-	CorsaCavalli campo;
-	int velocita;
-	Thread t;
-	int conta;
-	int posizione;
+	private Cavallo Cavallo;
+	private CorsaCavalli campo;
+	private int velocita;
+	private Thread t;
+	private int conta;
+	private int posizione;
 	/**
 	* costruttore con parameri
 	* @param c 

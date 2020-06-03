@@ -7,13 +7,13 @@ import javax.swing.*;
  * @author Lavacchi Ginevra
  */
 public class CorsaCavalli extends JFrame {
-	int ps;
-	Cavallo[] partecipanti;
-	CavalliInCorsa[] thread_partecipanti;
-	Campo pista;
-	Graphics offscreen;
-	Image bf;
-	int n=0;
+	private int ps;
+	private Cavallo[] partecipanti;
+	private CavalliInCorsa[] thread_p;
+	private Campo pista;
+	private Graphics offscreen;
+	private Image bf;
+	private int n=0;
 	/**
      * il costruttore parametrizzato
      * @param scelta il numero dei partecipanti
@@ -26,13 +26,13 @@ public class CorsaCavalli extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pista = new Campo();
 		partecipanti = new Cavallo[n];
-		thread_partecipanti = new CavalliInCorsa[n];
+		thread_p = new CavalliInCorsa[n];
 		ps = 1;
 		
 		int partenza = 15;
 		for (int xx=0; xx<n; xx++) {
 			partecipanti[xx] = new Cavallo(partenza,  xx);
-			thread_partecipanti[xx] = new CavalliInCorsa(partecipanti[xx], this);
+			thread_p[xx] = new CavalliInCorsa(partecipanti[xx], this);
 			partenza = partenza+50;			
 		}
 		// visualizza la gara
@@ -50,7 +50,7 @@ public class CorsaCavalli extends JFrame {
 	public synchronized void controllaArrivi() {
 		boolean arrivati=true;
 		for (int xx=0; xx<n; xx++) {
-			if (thread_partecipanti[xx].posizione==0) {
+			if (thread_p[xx].posizione==0) {
 				arrivati=false;
 			}
 		}
@@ -73,7 +73,7 @@ public class CorsaCavalli extends JFrame {
 		
 		for(int xx=1; xx<7; xx++) {
 			for (int yy=0; yy<n; yy++) {
-				if (thread_partecipanti[yy].posizione==xx){
+				if (thread_p[yy].posizione==xx){
 					arrivi[yy]=new JLabel(xx+"' Classificato in gara " + (yy+1)+"' corsia");
 					arrivi[yy].setFont(new Font("arial", Font.BOLD, 18));
 					arrivi[yy].setForeground(Color.BLACK);
