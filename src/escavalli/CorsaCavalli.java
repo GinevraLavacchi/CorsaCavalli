@@ -2,18 +2,21 @@ package escavalli;
 import java.util.Scanner;
 import java.awt.*;
 import java.util.Vector;
+import javax.imageio.ImageIO;
+
 import javax.swing.*;
+
 /**
  * @author Lavacchi Ginevra
  */
 public class CorsaCavalli extends JFrame {
-	private int ps;
-	private Cavallo[] partecipanti;
-	private CavalliInCorsa[] thread_p;
-	private Campo pista;
-	private Graphics offscreen;
-	private Image bf;
-	private int n=0;
+	int ps;
+	Cavallo[] partecipanti;
+	CavalliInCorsa[] thread_partecipanti;
+	Campo pista;
+	Graphics offscreen;
+	Image bf;
+	int n=0;
 	/**
      * il costruttore parametrizzato
      * @param scelta il numero dei partecipanti
@@ -26,13 +29,13 @@ public class CorsaCavalli extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pista = new Campo();
 		partecipanti = new Cavallo[n];
-		thread_p = new CavalliInCorsa[n];
+		thread_partecipanti = new CavalliInCorsa[n];
 		ps = 1;
 		
 		int partenza = 15;
 		for (int xx=0; xx<n; xx++) {
 			partecipanti[xx] = new Cavallo(partenza,  xx);
-			thread_p[xx] = new CavalliInCorsa(partecipanti[xx], this);
+			thread_partecipanti[xx] = new CavalliInCorsa(partecipanti[xx], this);
 			partenza = partenza+50;			
 		}
 		// visualizza la gara
@@ -50,7 +53,7 @@ public class CorsaCavalli extends JFrame {
 	public synchronized void controllaArrivi() {
 		boolean arrivati=true;
 		for (int xx=0; xx<n; xx++) {
-			if (thread_p[xx].posizione==0) {
+			if (thread_partecipanti[xx].posizione==0) {
 				arrivati=false;
 			}
 		}
@@ -59,24 +62,23 @@ public class CorsaCavalli extends JFrame {
 		}
 	}
 	/**
-	* il metodo che visualizza la classifica degli arrivi
-	*/
+         * il metodo che visualizza la classifica degli arrivi
+         */
 	public void visualizzaClassifica() {
 		JLabel[] arrivi;
 		arrivi = new JLabel[n];
 		JFrame classifica = new JFrame("Classifica Cavalli");
 		classifica.setSize(500, 500);
-		classifica.setLocation(280, 130);
-		classifica.setBackground(Color.BLUE);
+		classifica.setLocation(280, 130);;
 		classifica.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		classifica.getContentPane().setLayout(new GridLayout(6,1 ));
-		
+                classifica.getContentPane().setBackground(Color.magenta);
 		for(int xx=1; xx<7; xx++) {
 			for (int yy=0; yy<n; yy++) {
-				if (thread_p[yy].posizione==xx){
+				if (thread_partecipanti[yy].posizione==xx){
 					arrivi[yy]=new JLabel(xx+"' Classificato in gara " + (yy+1)+"' corsia");
-					arrivi[yy].setFont(new Font("arial", Font.BOLD, 18));
-					arrivi[yy].setForeground(Color.BLACK);
+					arrivi[yy].setFont(new Font("Times new Roman", Font.BOLD, 18));
+					arrivi[yy].setForeground(Color.white);
 					classifica.getContentPane().add(arrivi[yy]);
 				}
 			}
@@ -89,9 +91,9 @@ public class CorsaCavalli extends JFrame {
 		paint(g);
 	}
 	/**
-	* metodo relativo al disegno
-	* @param g 
-	*/
+         * metodo relativo al disegno
+         * @param g 
+         */
 	public void paint(Graphics g) {
 		if (partecipanti != null) {
 			Graphics2D screen = (Graphics2D) g;
@@ -106,18 +108,13 @@ public class CorsaCavalli extends JFrame {
 			offscreen.dispose();
 		}
 	}
+        
 	/**
      * il metodo main che gestisce la creazione della finestra di inizio per permettere di scegliere il numero di partecipanti
      * @param args the command line arguments
      */
-	public static void main(String[] a) {
-		/*Scanner d = new Scanner(System.in);
-		int scelta=0;
-		System.out.println("inserisci il numero di cavalli");
-		do {
-			scelta = d.nextInt();
-		}while(scelta<2 || scelta>6);
-		CorsaCavalli m=new CorsaCavalli(scelta);*/
+	public static void main(String[] args)
+        {
             JFrame f=new JFrame("Corsa Cavalli");
             JPanel pannello=new JPanel();
             pannello.setLayout(new GridBagLayout());
@@ -126,9 +123,11 @@ public class CorsaCavalli extends JFrame {
             c.gridx=0;
             c.gridy=0;
             c.insets =  new Insets(0,0,0,0);
-            JLabel b=new JLabel("BENVENUTO");
+            JLabel b=new JLabel("BENVENUTO!!!");
             pannello.add(b,c);
-            JLabel n=new JLabel("Quanti sono i partecipanti?");
+            b.setFont(new Font("Times new Roman",Font.BOLD, 18));
+            b.setForeground(Color.red);
+            JLabel n=new JLabel("Quanti sono i fantini?");
             //JTextField numero=new JTextField(20);
             c.gridy++;
             pannello.add(n,c);
@@ -155,5 +154,8 @@ public class CorsaCavalli extends JFrame {
             f.setVisible(true);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             f.setSize(500,300);
+            bottone.setBackground(Color.pink);
+            elencop.setBackground(Color.pink);
 	}
+        
 }

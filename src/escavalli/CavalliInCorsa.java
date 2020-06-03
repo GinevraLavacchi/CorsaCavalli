@@ -3,17 +3,17 @@ package escavalli;
  * @author Lavacchi Ginevra
  */
 public class CavalliInCorsa implements Runnable {
-	private Cavallo Cavallo;
-	private CorsaCavalli campo;
-	private int velocita;
-	private Thread t;
-	private int conta;
-	private int posizione;
+	Cavallo Cavallo;
+	CorsaCavalli campo;
+	int velocita;
+	Thread t;
+	int conta;
+	int posizione;
 	/**
-	* costruttore con parameri
-	* @param c 
-	* @param g 
-	*/
+         * costruttore con parameri
+         * @param c 
+         * @param g 
+         */
 	public CavalliInCorsa(Cavallo c, CorsaCavalli g) {
 		Cavallo=c;
 		campo=g;
@@ -25,7 +25,7 @@ public class CavalliInCorsa implements Runnable {
 	@Override
 	public void run() {
 		int dimImmagine=79;
-		int dimPista=960;
+		int dimPista=1020;
 		//while((Cavallo.))
 		while((Cavallo.getCoordx()+dimImmagine)<dimPista) {
 			if ((conta%10)==0)

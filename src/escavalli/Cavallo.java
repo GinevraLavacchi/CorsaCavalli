@@ -5,26 +5,27 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
 import javax.swing.JPanel;
 /**
  * @author Lavacchi Ginevra
  */
 public class Cavallo extends JPanel {
-	private int coordx;
-	private int coordy;
-	private Image img;
- 	/**
-	* costruttore con parametri
-	* @param yy
-	* @param xx 
-	*/
+	int coordx;
+	int coordy;
+	Image img;
+        /**
+         * costruttore con parametri
+         * @param yy
+         * @param xx 
+         */
 	public Cavallo(int yy, int xx) {
 		coordx = 0;
 		coordy = yy;
 		Toolkit tk = Toolkit.getDefaultToolkit();
 
             try {
-                img=ImageIO.read(getClass().getResource("../img/iconacavallo.png"));
+                img=ImageIO.read(getClass().getResource("../img/unicorno1.png"));
             } catch (IOException ex) {
                 Logger.getLogger(Cavallo.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -44,11 +45,11 @@ public class Cavallo extends JPanel {
 	public int getCoordx() {
 		return coordx;
 	}
-	
 	/**
-	* metodo per la creazione dell'immagine
-	* @param g 
-	*/
+         * metodo per la creazione dell'immagine
+         * @param g 
+         */
+	
 	public void paint(Graphics g) {
 		g.drawImage(img,  coordx,  coordy, null);
 	}
