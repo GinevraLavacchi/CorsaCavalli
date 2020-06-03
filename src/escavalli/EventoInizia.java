@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package escavalli;
 
 import java.awt.event.*;
@@ -15,19 +11,13 @@ import javax.swing.*;
 public class EventoInizia implements ActionListener
 {
     JComboBox n;
+    /**
+     * costruttore con parametri
+     * @param num l'elenco del numero di partecipanti
+     */
     public EventoInizia(JComboBox num)
     {
-       //String n=num.getText();
        n=num;
-       /*try
-       {
-            n=Integer.parseInt(nn);
-           
-       }
-       catch(Exception e)
-       {
-           n=2;
-       }*/
     }
     @Override
     public void actionPerformed(ActionEvent e) {

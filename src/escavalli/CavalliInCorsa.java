@@ -1,5 +1,7 @@
 package escavalli;
-
+/**
+ * @author Lavacchi Ginevra
+ */
 public class CavalliInCorsa implements Runnable {
 	Cavallo Cavallo;
 	CorsaCavalli campo;
@@ -7,7 +9,11 @@ public class CavalliInCorsa implements Runnable {
 	Thread t;
 	int conta;
 	int posizione;
-	
+	/**
+	* costruttore con parameri
+	* @param c 
+	* @param g 
+	*/
 	public CavalliInCorsa(Cavallo c, CorsaCavalli g) {
 		Cavallo=c;
 		campo=g;

@@ -2,9 +2,10 @@ package escavalli;
 import java.util.Scanner;
 import java.awt.*;
 import java.util.Vector;
-
 import javax.swing.*;
-
+/**
+ * @author Lavacchi Ginevra
+ */
 public class CorsaCavalli extends JFrame {
 	int ps;
 	Cavallo[] partecipanti;
@@ -13,7 +14,10 @@ public class CorsaCavalli extends JFrame {
 	Graphics offscreen;
 	Image bf;
 	int n=0;
-	
+	/**
+     * il costruttore parametrizzato
+     * @param scelta il numero dei partecipanti
+     */
 	public CorsaCavalli(int scelta) {
 		super("Corsa Cavalli");
 		n=scelta;
@@ -40,7 +44,9 @@ public class CorsaCavalli extends JFrame {
 	public synchronized int getPosizione() {
 		return ps++;
 	}
-	
+	/**
+     * il metodo che controlla se i cavalli sono arrivati
+     */
 	public synchronized void controllaArrivi() {
 		boolean arrivati=true;
 		for (int xx=0; xx<n; xx++) {
@@ -52,7 +58,9 @@ public class CorsaCavalli extends JFrame {
 			visualizzaClassifica();
 		}
 	}
-	
+	/**
+	* il metodo che visualizza la classifica degli arrivi
+	*/
 	public void visualizzaClassifica() {
 		JLabel[] arrivi;
 		arrivi = new JLabel[n];
@@ -80,7 +88,10 @@ public class CorsaCavalli extends JFrame {
 	public void update(Graphics g) {
 		paint(g);
 	}
-	
+	/**
+	* metodo relativo al disegno
+	* @param g 
+	*/
 	public void paint(Graphics g) {
 		if (partecipanti != null) {
 			Graphics2D screen = (Graphics2D) g;
@@ -95,7 +106,10 @@ public class CorsaCavalli extends JFrame {
 			offscreen.dispose();
 		}
 	}
-	
+	/**
+     * il metodo main che gestisce la creazione della finestra di inizio per permettere di scegliere il numero di partecipanti
+     * @param args the command line arguments
+     */
 	public static void main(String[] a) {
 		/*Scanner d = new Scanner(System.in);
 		int scelta=0;
